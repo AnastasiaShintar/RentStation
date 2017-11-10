@@ -1,14 +1,15 @@
 package by.htp.rentstation;
 
+import java.util.Arrays;
 import java.util.Date;
 
 public class RentUnit {
-	private Equipment[] units;
+	private Equipment[] units = new Equipment[18];
 	private int cost;
 	private String clientName;
 	private int idNum;
 	private Date rentDate;
-//	private int outfitCount;
+
 
 	public RentUnit(String clientName, int idNum, Date rentDate) {
 		this.clientName = clientName;
@@ -36,13 +37,30 @@ public class RentUnit {
 		return rentDate;
 	}
 
-//	public int getOutfitCount() {
-//		
-//		return outfitCount;
-//	}
+	public void addEquipment(Equipment eq) {
+		for (int i = 0; i < units.length; i++) {
+			if(units[i] == null) {
+				units[i] = eq;
+				break;
+			}
+		}
+	}
+	
+	public String showUnits() {
+		String result = "";
+		for (int i = 0; i < units.length; i++) {
+			if(units[i] != null) {
+				result += "\n" + units[i];
+			}
+		}
+		return result;
+	}
 
-//	public void incrementOutfitCount() {
-//		this.outfitCount++;
-//	}
+	@Override
+	public String toString() {
+		return "Заказ № " + idNum +  " от " + rentDate + " клиента " + clientName + " :" + showUnits();
+	}
+	
+	
 
 }
